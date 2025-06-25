@@ -1,10 +1,13 @@
 #include "ScalarConverter.hpp"
-#include <_ctype.h>
+#include "ScalarConverter.h"
+#include <ctype.h>
 #include <cctype>
 #include <cstdlib>
 #include <iostream>
-#include "ScalarConverter.h"
 #include <ctype.h>
+#include <iomanip>
+#include <float.h>
+#include <cmath>
 
 ScalarConverter::ScalarConverter()
 {
@@ -31,17 +34,21 @@ ScalarConverter    &ScalarConverter::operator = (const ScalarConverter &rhs)
     return (*this);
 }
 
-void    printAsChar(std::string literal)
+static void    printAsChar(std::string literal)
 {
 	std::cout << "char: ";
 
-	if (isNumeric(literal))
+	if (isFloatingPointRep(literal))
 	{
-		int c = std::strtol(literal.c_str(), NULL, 10);
+		int     c = static_cast<int>(std::strtol(literal.c_str(), NULL, BASE));
+        long    lc = std::strtol(literal.c_str(), NULL, BASE);
+
+        if (isOverflowing(c, lc))
+            return ;
 
         if (isascii(c) && std::isprint(c))
         {
-            std::cout << static_cast<char>(c) << std::endl;
+            std::cout << "'" << static_cast<char>(c) << "'" << std::endl;
             return ;
         }
 
@@ -54,27 +61,74 @@ void    printAsChar(std::string literal)
 
 	if (literal.length() == 1)
     {
-        std::cout << literal[0] << std::endl;
+        std::cout << "'" << literal[0] << "'" << std::endl;
         return ;
     }
 
     std::cout << "impossible\n";
 }
 
-void    printAsInt(std::string literal)
+static void    printAsInt(std::string literal)
 {
     std::cout << "int: ";
 
-    if (isNumeric(literal) || isNumeric(literal.c_str() + 1)
-        && (literal[0] == '+' || literal[0] == '-'))
+    if (isFloatingPointRep(literal))
     {
-        long    ln = std::strtol(literal.c_str(), NULL, 10);
-        int     n = std::strtol(literal.c_str(), NULL, 10);
+        long    ln = std::strtol(literal.c_str(), NULL, BASE);
+        int     n = static_cast<int>(std::strtol(literal.c_str(), NULL, BASE));
 
-        if (is_overflowing(n, ln))
+        if (isOverflowing(n, ln))
             return ;
 
         std::cout << n << std::endl;
+        return ;
+    }
+
+    if (literal.length() == 1)
+    {
+        std::cout << static_cast<int>(literal[0]) << std::endl;
+        return ;
+    }
+
+    std::cout << "impossible" << std::endl;
+}
+
+static void printAsFloat(std::string literal)
+{
+    std::cout << "float: ";
+
+    if (isFloatingPointRep(literal) || isSpecialVal(literal))
+    {
+        double  f = std::atof(literal.c_str());
+
+        std::cout << static_cast<float>(f) << FLOAT_SUFFIX << std::endl;
+        return ;
+    }
+
+    if (literal.length() == 1)
+    {
+        std::cout << static_cast<float>(literal[0]) << FLOAT_SUFFIX << std::endl;
+        return ;
+    }
+
+    std::cout << "impossible" << std::endl;
+}
+
+static void printAsDouble(std::string literal)
+{
+    std::cout << "double: ";
+
+    if (isFloatingPointRep(literal) || isSpecialVal(literal))
+    {
+        double  d = atof(literal.c_str());
+
+        std::cout << d << std::endl;
+        return;
+    }
+
+    if (literal.length() == 1)
+    {
+        std::cout << static_cast<double>(literal[0]) << std::endl;
         return ;
     }
 
@@ -83,8 +137,10 @@ void    printAsInt(std::string literal)
 
 void    ScalarConverter::convert(std::string literal)
 {
+    std::cout << std::fixed << std::setprecision(1);
+
     printAsChar(literal);
     printAsInt(literal);
-    // printAsFloat(literal);
-    // printAsDouble(literal);
+    printAsFloat(literal);
+    printAsDouble(literal);
 }

@@ -1,22 +1,30 @@
-# char ; int ; float ; double
-
+# char
 # ex00
-    c ;
-    P ;
-    . ;
-    0 ;
-    128 ;
-    -128 ;
-    210 ;
-    256 ;
-    2147483650 ;
-    69 ;
-    68black ;
-    33. ;
-    33.45 ;
-    0000 ;
-    0001 ;
-    00045 ;
-    0006~ ;
-    !78 ;
-    cat ;
+   a
+   c
+   .
+   '~'
+   55
+   -44
+   127
+
+   under/over-flow in char
+   under/over-flow in int
+   under/over-flow in double
+   under/over-flow in float
+
+   wakanda
+   inf,inff,+inf,-inf,+inff,-inff
+   nan,nanf
+   
+   .5f
+   -.5f
+   +.5f
+   .f
+   0.f
+   5.
+   000000.1
+   
+
+ % To do
+    what does that fixed-setprecision combo at the begining of the stream do to the incoming bytes

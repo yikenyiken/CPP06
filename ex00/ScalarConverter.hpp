@@ -2,6 +2,7 @@
 # define ScalarConverter_HPP
 # include <string>
 # include <iostream>
+# define BASE 10
 
 class ScalarConverter
 {

@@ -1,9 +1,10 @@
 #ifndef ScalarConverter_H
 # define ScalarConverter_H
 # include <string>
-# define IS_OVERFLOW(n, ln) n < ln ? true : false
+# define FLOAT_SUFFIX 'f'
 
-bool    isNumeric(std::string literal);
-bool    is_overflowing(int n, long ln);
+bool    isOverflowing(int n, long ln);
+bool    isFloatingPointRep(std::string literal);
+bool    isSpecialVal(std::string literal);
 
 #endif
