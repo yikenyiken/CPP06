@@ -1,6 +1,6 @@
 #ifndef Serializer_HPP
 # define Serializer_HPP
-# include <cstdint>
+# include "stdint.h"
 # include "Data.hpp"
 
 class Serializer
@@ -12,7 +12,7 @@ class Serializer
         ~Serializer();
 
         Serializer          &operator = (const Serializer &rhs);
-        static uintptr_t    serialze(Data *ptr);
+        static uintptr_t    serialize(Data *ptr);
         static Data         *deserialize(uintptr_t raw);
 };
 

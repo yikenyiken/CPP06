@@ -8,8 +8,8 @@ class ScalarConverter
 {
     private:
         ScalarConverter();
-    public:
         ScalarConverter(const ScalarConverter &other);
+    public:
         ~ScalarConverter();
 
         ScalarConverter	&operator = (const ScalarConverter &rhs);

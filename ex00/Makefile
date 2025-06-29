@@ -1,4 +1,4 @@
-NAME =	a.out
+NAME =	convert
 
 SRCS =	main.cpp ScalarConverter.cpp utils.cpp
 
@@ -26,4 +26,4 @@ fclean	:	clean
 
 re		:	fclean all
 
-.PHONY	:	clean fclean re
+.PHONY	:	clean

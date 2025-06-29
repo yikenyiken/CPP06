@@ -5,6 +5,6 @@
 
 bool    isOverflowing(int n, long ln);
 bool    isFloatingPointRep(std::string literal);
-bool    isSpecialVal(std::string literal);
+bool    isPseudoLiteral(std::string literal);
 
 #endif

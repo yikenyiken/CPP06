@@ -1,13 +1,8 @@
 #include "ScalarConverter.hpp"
 #include "ScalarConverter.h"
-#include <ctype.h>
-#include <cctype>
 #include <cstdlib>
 #include <iostream>
-#include <ctype.h>
 #include <iomanip>
-#include <float.h>
-#include <cmath>
 
 ScalarConverter::ScalarConverter()
 {
@@ -97,7 +92,7 @@ static void printAsFloat(std::string literal)
 {
     std::cout << "float: ";
 
-    if (isFloatingPointRep(literal) || isSpecialVal(literal))
+    if (isFloatingPointRep(literal) || isPseudoLiteral(literal))
     {
         double  f = std::atof(literal.c_str());
 
@@ -118,7 +113,7 @@ static void printAsDouble(std::string literal)
 {
     std::cout << "double: ";
 
-    if (isFloatingPointRep(literal) || isSpecialVal(literal))
+    if (isFloatingPointRep(literal) || isPseudoLiteral(literal))
     {
         double  d = atof(literal.c_str());
 

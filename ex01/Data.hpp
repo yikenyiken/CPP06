@@ -11,7 +11,6 @@ struct Data
         ~Data();
 
         Data	&operator = (const Data &rhs);
-        void    printState(void);
 };
 
 #endif

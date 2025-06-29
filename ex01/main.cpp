@@ -5,7 +5,7 @@
 int main() {
 
     Data    *ptr = new Data(5);
-    Data    *PostSerialize = Serializer::deserialize(Serializer::serialze(ptr));
+    Data    *PostSerialize = Serializer::deserialize(Serializer::serialize(ptr));
 
     if (ptr == PostSerialize)
     {

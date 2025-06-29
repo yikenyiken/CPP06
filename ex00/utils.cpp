@@ -9,7 +9,7 @@
 #define INF std::string("inf")
 #define NAN std::string("nan")
 
-bool    isSpecialVal(std::string literal)
+bool    isPseudoLiteral(std::string literal)
 {
     return (literal == INF || literal == HYPHEN + INF || literal == HYPHEN + INF + FLOAT_SUFFIX
         || literal == PLUS_SIGN + INF || literal == PLUS_SIGN + INF + FLOAT_SUFFIX
